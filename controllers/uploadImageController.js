@@ -5,9 +5,9 @@ const cloudinary = require("cloudinary").v2;
 
 // cloudinary configuration for saving files
 cloudinary.config({
-  cloud_name: 'drwxitp8n',
-  api_key: '325286914776221',
-  api_secret: 'KxD1nlzIbZGVZWLIrmZNVN41rrs',
+  cloud_name: "drwxitp8n",
+  api_key: "325286914776221",
+  api_secret: "KxD1nlzIbZGVZWLIrmZNVN41rrs",
 });
 const opts = {
   // overwrite: true,
@@ -38,7 +38,7 @@ module.exports.uploadRecord = async function (req, res) {
       try {
         const { secure_url, public_id } = await cloudinary.uploader.upload(
           file.path,
-          opts
+          { gravity: "faces", height: 800, width: 800, crop: "thumb" }
         );
 
         data.imgUrl = secure_url;
@@ -93,7 +93,7 @@ module.exports.updateRecord = async function (req, res) {
 
       const { secure_url, public_id } = await cloudinary.uploader.upload(
         file.path,
-        opts
+        { gravity: "faces", height: 800, width: 800, crop: "thumb" }
       );
 
       data.imgUrl = secure_url;
